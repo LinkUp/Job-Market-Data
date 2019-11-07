@@ -3,7 +3,7 @@
 ##### Scope:  This outlines the process of communication and timing of product changes to release new features and products that could result in a breaking change for customers or trial users.  The scope includes any features, products, and changes to our data files that are ready to be implemented by the engineering team. 
 
 
-### Initial Communication (Day 0)
+### Initial Communication (Day -30)
 
 ##### NOTIFICATION:  
 
@@ -14,7 +14,7 @@ Change notification sent with release notes + timeline for changes.  Notificatio
     - Email sent to all Active JDE users
     - Release notes file placed in github repository
 
-### Second Communication (Day 30)
+### Second Communication (Day 0)
 
 ##### PRODUCT:  
 
@@ -29,7 +29,7 @@ Change notification sent with release notes.  This will state that the new files
     - Email sent to all Active JDE users
     - Release notes file placed in github repository
 
-### Final Communication (Day 60)
+### Final Communication (Day 30)
 
 ##### PRODUCT:  
 
