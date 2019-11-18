@@ -14069,10 +14069,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw_pit_company_reference_full_2019-11-16.csv&#39;</span><span class="p">);</span> <span class="n">ScrapeLog</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw_company_scrape_log_full_2019-11-01.csv&#39;</span><span class="p">);</span> <span class="n">ScrapeLog</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14085,7 +14085,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -14109,180 +14109,116 @@ div#notebook {
     <tr style="text-align: right;">
       <th></th>
       <th>company_id</th>
-      <th>start_date</th>
-      <th>end_date</th>
-      <th>company_name</th>
-      <th>company_url</th>
-      <th>lei</th>
-      <th>open_perm_id</th>
-      <th>naics_code</th>
+      <th>date</th>
+      <th>scrape_run_complete</th>
+      <th>scrape_changed</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>0</td>
       <td>1</td>
-      <td>2005-01-16</td>
-      <td>2016-02-24</td>
-      <td>Target</td>
-      <td>http://www.target.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>2009-02-10</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>1</td>
       <td>1</td>
-      <td>2016-02-25</td>
-      <td>NaN</td>
-      <td>Target</td>
-      <td>http://www.target.com</td>
-      <td>8WDDFXB5T1Z6J0XC1L66</td>
-      <td>4295912282</td>
-      <td>452210.0</td>
+      <td>2009-03-18</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>2</td>
-      <td>2005-01-16</td>
-      <td>2016-02-23</td>
-      <td>General Mills, Inc.</td>
-      <td>http://www.generalmills.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2009-03-24</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>2</td>
-      <td>2016-02-24</td>
-      <td>NaN</td>
-      <td>General Mills, Inc.</td>
-      <td>http://www.generalmills.com</td>
-      <td>2TGYMUGI08PO8X8L6150</td>
-      <td>4295904061</td>
-      <td>311999.0</td>
+      <td>1</td>
+      <td>2009-04-07</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>3</td>
-      <td>2005-01-16</td>
-      <td>2016-02-23</td>
-      <td>Ecolab Inc.</td>
-      <td>http://www.ecolab.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2009-05-06</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>5</td>
-      <td>3</td>
-      <td>2016-02-24</td>
-      <td>NaN</td>
-      <td>Ecolab Inc.</td>
-      <td>http://www.ecolab.com</td>
-      <td>82DYEISM090VG8LTLS26</td>
-      <td>4295903916</td>
-      <td>325611.0</td>
+      <td>1</td>
+      <td>2009-05-18</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>6</td>
-      <td>5</td>
-      <td>2005-01-16</td>
-      <td>2016-02-23</td>
-      <td>Wilsons Leather</td>
-      <td>http://www.wilsonsleather.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2009-08-14</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>7</td>
-      <td>5</td>
-      <td>2016-02-24</td>
-      <td>NaN</td>
-      <td>Wilsons Leather</td>
-      <td>http://www.wilsonsleather.com</td>
-      <td>NaN</td>
-      <td>4296053169</td>
-      <td>561499.0</td>
+      <td>1</td>
+      <td>2009-09-24</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>8</td>
-      <td>6</td>
-      <td>2005-01-16</td>
-      <td>2016-02-23</td>
-      <td>Hawkins Chemical</td>
-      <td>http://www.hawkinsinc.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2009-10-13</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>9</td>
-      <td>6</td>
-      <td>2016-02-24</td>
-      <td>NaN</td>
-      <td>Hawkins Chemical</td>
-      <td>http://www.hawkinsinc.com</td>
-      <td>549300VL3IJ23OWX1Y34</td>
-      <td>4295906673</td>
-      <td>541612.0</td>
+      <td>1</td>
+      <td>2009-10-23</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>10</td>
-      <td>7</td>
-      <td>2005-01-16</td>
-      <td>2016-02-23</td>
-      <td>Zomax</td>
-      <td>http://www.zomax.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2010-08-31</td>
+      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <td>11</td>
-      <td>7</td>
-      <td>2016-02-24</td>
-      <td>NaN</td>
-      <td>Zomax</td>
-      <td>http://www.zomax.com</td>
-      <td>NaN</td>
-      <td>4295915504</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2010-09-09</td>
+      <td>True</td>
+      <td>False</td>
     </tr>
     <tr>
       <td>12</td>
-      <td>8</td>
-      <td>2005-01-16</td>
-      <td>2018-10-09</td>
-      <td>RTW</td>
-      <td>http://www.rtwi.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2010-09-12</td>
+      <td>True</td>
+      <td>False</td>
     </tr>
     <tr>
       <td>13</td>
-      <td>8</td>
-      <td>2018-10-10</td>
-      <td>NaN</td>
-      <td>RTW</td>
-      <td>http://www.rtwi.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2010-09-13</td>
+      <td>True</td>
+      <td>False</td>
     </tr>
     <tr>
       <td>14</td>
-      <td>9</td>
-      <td>2005-01-16</td>
-      <td>2016-02-23</td>
-      <td>H.B. Fuller</td>
-      <td>http://www.hbfuller.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>1</td>
+      <td>2010-09-14</td>
+      <td>True</td>
+      <td>False</td>
     </tr>
   </tbody>
 </table>
