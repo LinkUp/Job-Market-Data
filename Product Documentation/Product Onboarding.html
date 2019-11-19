@@ -13778,17 +13778,17 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Factset-Company-Reference">Factset Company Reference<a class="anchor-link" href="#Factset-Company-Reference">&#182;</a></h1><p>This file shows all information that LinkUp has derived from Factset ID from the factset concordance process.</p>
-<p>This file was created through concordance of our company id to Factset Entity ID. This can then be used to crawl through the FactSet hierarchy and assign multiple identifiers to our company ID.</p>
+<p>This file was created through concordance of our company id to Factset Entity ID. From Factset Entity ID, we then crawled through the FactSet hierarchy and assigned multiple identifiers to our company ID.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TickerPITRef</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;fs_company_reference_daily_2019-11-13.csv.gz&#39;</span><span class="p">);</span> <span class="n">TickerPITRef</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fs_company_reference</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;fs_company_reference_daily_2019-11-13.csv.gz&#39;</span><span class="p">);</span> <span class="n">fs_company_reference</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13801,7 +13801,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -14241,18 +14241,18 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This file is summed totals from the raw job file. The created_job_count is the total number of jobs created that day, the deleted_job_count is the total number of jobs removed from a careers page for that company, the unique_active_job_count is the total number of active jobs for the company. If a company has no values for all 3 of these fields they will not have a record for that day.</p>
+<p>This file is summed totals from the raw job file. The created_job_count is the total number of jobs created that day, the deleted_job_count is the total number of jobs removed from a careers page for that company, the unique_active_job_count is the total number of active jobs for the company. Active duration is a capped average of duration of currently unique active jobs.  If a company has no/0 values for all 4 of these fields they will not have a record for that day.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Quant_Created</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_company_analytics_2019-11-14.csv&#39;</span><span class="p">,</span>
-                           <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span> <span class="p">);</span> <span class="n">Quant_Created</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">company_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_company_analytics_2019-11-14.csv&#39;</span><span class="p">,</span>
+                           <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span> <span class="p">);</span> <span class="n">company_analytics</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14265,7 +14265,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -14476,7 +14476,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticker_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_ticker_analytics_2019-11-16.csv.gz&#39;</span><span class="p">,</span>
@@ -14493,7 +14493,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
