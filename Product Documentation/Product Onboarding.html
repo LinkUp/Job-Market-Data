@@ -13076,7 +13076,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -14069,10 +14069,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw_company_scrape_log_full_2019-11-01.csv&#39;</span><span class="p">);</span> <span class="n">ScrapeLog</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw_company_scrape_log_full_2019-11-01.csv&#39;</span><span class="p">);</span>
+<span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">ScrapeLog</span><span class="p">[</span><span class="n">ScrapeLog</span><span class="o">.</span><span class="n">date</span> <span class="o">&gt;</span> <span class="s1">&#39;2019-01-01&#39;</span><span class="p">]</span>
+<span class="n">ScrapeLog</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;company_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ScrapeLog</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14085,7 +14088,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -14116,107 +14119,107 @@ div#notebook {
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <td>1436</td>
       <td>1</td>
-      <td>2009-02-10</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>2009-03-18</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>1</td>
-      <td>2009-03-24</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>1</td>
-      <td>2009-04-07</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>1</td>
-      <td>2009-05-06</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>1</td>
-      <td>2009-05-18</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>1</td>
-      <td>2009-08-14</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>1</td>
-      <td>2009-09-24</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>1</td>
-      <td>2009-10-13</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>1</td>
-      <td>2009-10-23</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>1</td>
-      <td>2010-08-31</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>1</td>
-      <td>2010-09-09</td>
+      <td>2019-01-02</td>
       <td>True</td>
       <td>False</td>
     </tr>
     <tr>
-      <td>12</td>
+      <td>1437</td>
       <td>1</td>
-      <td>2010-09-12</td>
+      <td>2019-01-03</td>
       <td>True</td>
       <td>False</td>
     </tr>
     <tr>
-      <td>13</td>
+      <td>1438</td>
       <td>1</td>
-      <td>2010-09-13</td>
+      <td>2019-01-04</td>
       <td>True</td>
       <td>False</td>
     </tr>
     <tr>
-      <td>14</td>
+      <td>1439</td>
       <td>1</td>
-      <td>2010-09-14</td>
+      <td>2019-01-05</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1440</td>
+      <td>1</td>
+      <td>2019-01-06</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1441</td>
+      <td>1</td>
+      <td>2019-01-07</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1442</td>
+      <td>1</td>
+      <td>2019-01-08</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1443</td>
+      <td>1</td>
+      <td>2019-01-09</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1444</td>
+      <td>1</td>
+      <td>2019-01-10</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1445</td>
+      <td>1</td>
+      <td>2019-01-11</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1446</td>
+      <td>1</td>
+      <td>2019-01-12</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1447</td>
+      <td>1</td>
+      <td>2019-01-13</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1448</td>
+      <td>1</td>
+      <td>2019-01-14</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1449</td>
+      <td>1</td>
+      <td>2019-01-15</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>1450</td>
+      <td>1</td>
+      <td>2019-01-16</td>
       <td>True</td>
       <td>False</td>
     </tr>
@@ -14248,11 +14251,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">company_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_company_analytics_2019-11-14.csv&#39;</span><span class="p">,</span>
-                           <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span> <span class="p">);</span> <span class="n">company_analytics</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">company_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_company_analytics_2019-11-14.csv&#39;</span><span class="p">);</span>
+<span class="n">company_analytics</span> <span class="o">=</span> <span class="n">company_analytics</span><span class="p">[</span><span class="n">company_analytics</span><span class="o">.</span><span class="n">day</span> <span class="o">&gt;</span> <span class="s1">&#39;2019-01-01&#39;</span><span class="p">]</span>
+<span class="n">company_analytics</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">company_analytics</span> <span class="o">=</span> <span class="n">company_analytics</span><span class="p">[(</span><span class="n">company_analytics</span><span class="o">.</span><span class="n">created_job_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">company_analytics</span><span class="o">.</span><span class="n">deleted_job_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">company_analytics</span><span class="o">.</span><span class="n">unique_active_job_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">company_analytics</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14265,7 +14271,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -14299,154 +14305,154 @@ div#notebook {
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
-      <td>2007-12-11</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>748</td>
-      <td>52</td>
-      <td>696</td>
-      <td>1.0000</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>2007-12-12</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>696</td>
-      <td>2.0000</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>2007-12-13</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>696</td>
-      <td>3.0000</td>
-    </tr>
-    <tr>
+      <td>16487029</td>
+      <td>2019-11-14</td>
+      <td>22726</td>
+      <td>Smuckers</td>
       <td>3</td>
-      <td>2007-12-14</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>161</td>
-      <td>31</td>
-      <td>826</td>
-      <td>3.4479</td>
-    </tr>
-    <tr>
       <td>4</td>
-      <td>2007-12-15</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>826</td>
-      <td>4.4479</td>
+      <td>125</td>
+      <td>68.1840</td>
     </tr>
     <tr>
-      <td>5</td>
-      <td>2007-12-16</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>826</td>
-      <td>5.4479</td>
+      <td>16513883</td>
+      <td>2019-11-14</td>
+      <td>22739</td>
+      <td>Cognizant Technology Solutions</td>
+      <td>123</td>
+      <td>117</td>
+      <td>2467</td>
+      <td>43.0859</td>
     </tr>
     <tr>
-      <td>6</td>
-      <td>2007-12-17</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>67</td>
-      <td>70</td>
-      <td>823</td>
-      <td>6.0960</td>
+      <td>16494126</td>
+      <td>2019-11-14</td>
+      <td>22729</td>
+      <td>Philip Morris International</td>
+      <td>25</td>
+      <td>33</td>
+      <td>468</td>
+      <td>49.3462</td>
     </tr>
     <tr>
-      <td>7</td>
-      <td>2007-12-18</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>823</td>
-      <td>7.0960</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>2007-12-19</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>823</td>
-      <td>8.0960</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>2007-12-20</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>94</td>
-      <td>52</td>
-      <td>865</td>
-      <td>8.2590</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>2007-12-21</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>865</td>
-      <td>9.2590</td>
-    </tr>
-    <tr>
+      <td>44675959</td>
+      <td>2019-11-14</td>
+      <td>47251</td>
+      <td>Cooper-Booth Wholesale Company</td>
       <td>11</td>
-      <td>2007-12-22</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>865</td>
-      <td>10.2590</td>
+      <td>11</td>
+      <td>19</td>
+      <td>6.8947</td>
     </tr>
     <tr>
-      <td>12</td>
-      <td>2007-12-23</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>69</td>
+      <td>16490244</td>
+      <td>2019-11-14</td>
+      <td>22727</td>
+      <td>CenturyLink</td>
+      <td>21</td>
+      <td>26</td>
+      <td>700</td>
+      <td>34.7714</td>
+    </tr>
+    <tr>
+      <td>16761994</td>
+      <td>2019-11-14</td>
+      <td>22875</td>
+      <td>Puma</td>
+      <td>11</td>
       <td>24</td>
-      <td>910</td>
-      <td>10.4912</td>
+      <td>442</td>
+      <td>97.7783</td>
     </tr>
     <tr>
-      <td>13</td>
-      <td>2007-12-24</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>910</td>
-      <td>11.4912</td>
+      <td>44586783</td>
+      <td>2019-11-14</td>
+      <td>471</td>
+      <td>Avis Budget Group</td>
+      <td>47</td>
+      <td>368</td>
+      <td>927</td>
+      <td>50.6472</td>
     </tr>
     <tr>
-      <td>14</td>
-      <td>2007-12-25</td>
-      <td>1</td>
-      <td>Target</td>
-      <td>0</td>
-      <td>0</td>
-      <td>910</td>
-      <td>12.4912</td>
+      <td>44589553</td>
+      <td>2019-11-14</td>
+      <td>47101</td>
+      <td>Brandon Nursing and Rehabilitation Center, LLC</td>
+      <td>3</td>
+      <td>4</td>
+      <td>8</td>
+      <td>91.0000</td>
+    </tr>
+    <tr>
+      <td>16781088</td>
+      <td>2019-11-14</td>
+      <td>22889</td>
+      <td>Kemin Industries, Inc.</td>
+      <td>6</td>
+      <td>4</td>
+      <td>72</td>
+      <td>45.7500</td>
+    </tr>
+    <tr>
+      <td>16675231</td>
+      <td>2019-11-14</td>
+      <td>22838</td>
+      <td>Sinclair Broadcast Group, Inc.</td>
+      <td>16</td>
+      <td>23</td>
+      <td>654</td>
+      <td>80.9327</td>
+    </tr>
+    <tr>
+      <td>16664410</td>
+      <td>2019-11-14</td>
+      <td>22833</td>
+      <td>Progressive Logistics</td>
+      <td>2</td>
+      <td>4</td>
+      <td>1012</td>
+      <td>145.7935</td>
+    </tr>
+    <tr>
+      <td>16658289</td>
+      <td>2019-11-14</td>
+      <td>22831</td>
+      <td>Mass Eye and Ear</td>
+      <td>5</td>
+      <td>4</td>
+      <td>212</td>
+      <td>80.1462</td>
+    </tr>
+    <tr>
+      <td>44635698</td>
+      <td>2019-11-14</td>
+      <td>47185</td>
+      <td>The Christman Company</td>
+      <td>3</td>
+      <td>2</td>
+      <td>23</td>
+      <td>41.0870</td>
+    </tr>
+    <tr>
+      <td>44612055</td>
+      <td>2019-11-14</td>
+      <td>47141</td>
+      <td>Canteen Services</td>
+      <td>9</td>
+      <td>3</td>
+      <td>24</td>
+      <td>6.6667</td>
+    </tr>
+    <tr>
+      <td>16696061</td>
+      <td>2019-11-14</td>
+      <td>22846</td>
+      <td>Asbury Automotive</td>
+      <td>33</td>
+      <td>41</td>
+      <td>373</td>
+      <td>19.2172</td>
     </tr>
   </tbody>
 </table>
@@ -14476,11 +14482,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticker_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_ticker_analytics_2019-11-16.csv.gz&#39;</span><span class="p">,</span>
-                           <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span> <span class="p">);</span> <span class="n">ticker_analytics</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticker_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_ticker_analytics_2019-11-16.csv.gz&#39;</span><span class="p">);</span>
+<span class="n">ticker_analytics</span> <span class="o">=</span> <span class="n">ticker_analytics</span><span class="p">[</span><span class="n">ticker_analytics</span><span class="o">.</span><span class="n">day</span> <span class="o">&gt;</span> <span class="s1">&#39;2019-01-01&#39;</span><span class="p">]</span>
+<span class="n">ticker_analytics</span> <span class="o">=</span> <span class="n">ticker_analytics</span><span class="p">[(</span><span class="n">ticker_analytics</span><span class="o">.</span><span class="n">created_job_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ticker_analytics</span><span class="o">.</span><span class="n">deleted_job_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ticker_analytics</span><span class="o">.</span><span class="n">unique_active_job_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">ticker_analytics</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14493,7 +14501,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -14526,139 +14534,139 @@ div#notebook {
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
-      <td>2008-09-21</td>
-      <td>000050 | SHE | CN</td>
-      <td>2</td>
-      <td>0</td>
-      <td>2</td>
-      <td>1</td>
+      <td>10594558</td>
+      <td>2019-10-18</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>23</td>
+      <td>22</td>
+      <td>23</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>1</td>
-      <td>2008-09-22</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
+      <td>10594560</td>
+      <td>2019-10-20</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>19</td>
+      <td>23</td>
+      <td>19</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>2</td>
-      <td>2008-09-23</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>3</td>
+      <td>10594562</td>
+      <td>2019-10-22</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>20</td>
+      <td>19</td>
+      <td>20</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>3</td>
-      <td>2008-09-24</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>4</td>
+      <td>10594564</td>
+      <td>2019-10-24</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>18</td>
+      <td>20</td>
+      <td>18</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>4</td>
-      <td>2008-09-25</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>5</td>
+      <td>10594566</td>
+      <td>2019-10-26</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>16</td>
+      <td>18</td>
+      <td>16</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>5</td>
-      <td>2008-09-26</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>6</td>
+      <td>10594568</td>
+      <td>2019-10-28</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>16</td>
+      <td>16</td>
+      <td>16</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>6</td>
-      <td>2008-09-27</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>7</td>
+      <td>10594570</td>
+      <td>2019-10-30</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>17</td>
+      <td>16</td>
+      <td>17</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>7</td>
-      <td>2008-09-28</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>8</td>
+      <td>10594572</td>
+      <td>2019-11-01</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>17</td>
+      <td>17</td>
+      <td>17</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>8</td>
-      <td>2008-09-29</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>9</td>
+      <td>10594575</td>
+      <td>2019-11-04</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>17</td>
+      <td>17</td>
+      <td>17</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>9</td>
-      <td>2008-09-30</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>10</td>
+      <td>10594577</td>
+      <td>2019-11-06</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>18</td>
+      <td>17</td>
+      <td>18</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>10</td>
-      <td>2008-10-01</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>11</td>
+      <td>10594579</td>
+      <td>2019-11-08</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>27</td>
+      <td>18</td>
+      <td>27</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>11</td>
-      <td>2008-10-02</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>12</td>
+      <td>10594581</td>
+      <td>2019-11-10</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>29</td>
+      <td>27</td>
+      <td>29</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>12</td>
-      <td>2008-10-03</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>13</td>
+      <td>10594583</td>
+      <td>2019-11-12</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>28</td>
+      <td>29</td>
+      <td>28</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>13</td>
-      <td>2008-10-04</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>14</td>
+      <td>10594585</td>
+      <td>2019-11-14</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>29</td>
+      <td>28</td>
+      <td>29</td>
+      <td>1.0</td>
     </tr>
     <tr>
-      <td>14</td>
-      <td>2008-10-05</td>
-      <td>000050 | SHE | CN</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>15</td>
+      <td>10594587</td>
+      <td>2019-11-16</td>
+      <td>ZZZ | TSE | CA</td>
+      <td>28</td>
+      <td>29</td>
+      <td>28</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -14667,6 +14675,19 @@ div#notebook {
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
