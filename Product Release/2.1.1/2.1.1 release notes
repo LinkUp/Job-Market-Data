@@ -27,9 +27,9 @@ o   Data will be placed in JDE/Standard/Feeds/Raw Full Job Records/2019/31/ with
 Raw Full Job Descriptions
 ·      Current State
 o     Filename is dated one day after the data in the file.
-o   Data is placed in JDE/Standard/Feeds/Raw Full Job Descriptions/2020/01/ with file date of raw_job_archive_2019_01_01.tar.gz
+o   Data is placed in JDE/Standard/Feeds/Raw Full Job Descriptions/2020/01/ with file date of linkup_job_descriptions_2020-01-01.tar.gz
 ·      Future State
-o   Data will be placed in JDE/Standard/Feeds/Raw Full Job Descriptions/2019/31/ with a file date of raw_job_archive_2019_12_31.tar.gz
+o   Data will be placed in JDE/Standard/Feeds/Raw Full Job Descriptions/2019/31/ with a file date of  linkup_job_descriptions_2019-12-31.tar.gz
 
 Raw Full Company Scrape Log 
 ·      Current State
