@@ -1,6 +1,0 @@
-Factset update 08/26/2020
-10324 companies updated with entity IDs that did not previously have entity IDs
-
-
-
-Note these files are just to be used as a log of what was updated. These files should not be used in production in anyway. Please use the most up to date FS_company_reference_daily file.
