@@ -1,0 +1,8 @@
+Solekai Systems Corp
+Effective: April 17, 2020
+
+Problem
+On April 16th we were made aware of an alarmingly high job count for Solekai Systems Corp (company_id: 16507) in our set. The scrape was investigated and determined to be erroneous.  This company's jobs were deleted, but the records were still published in the Raw Daily Job Records And Descriptions file(s) on April 17th (for April 16th) and created and deleted counts for that company were also high in the Core Company Analytics file on that day.
+
+Correction
+On April 17th we removed these records from our historical data set. This removed the erroneous created and deleted counts for April 16th from our Core Analytics files, and will prevent them from being published in the Raw Full Job Records in May.

@@ -1,0 +1,1 @@
+LinkUp has a new and improved version of Raw. The purpose of this folder is to provide helpful information to clients who need to migrate from LinkUp Raw 1 to LinkUp Raw 2.1. If you are already using Raw 2.1 you can disregard this folder and all the files contained in it.

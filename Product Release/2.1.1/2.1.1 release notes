@@ -1,0 +1,63 @@
+2.1.1 LinkUp Product Release Notes
+This 2.1.1 release is focused on improving consistency of the file naming convention. 
+Naming Convention for LinkUp Raw Files 
+
+Raw Full PIT Company Reference File
+·      Current State
+o   Filename is dated one day after the data in the file.
+o   Example raw_pit_company_reference_full_2020_01_01.csv.gz latest time stamp is 2019-12-31 (data through the 31st not the 1st).
+·      Future State
+o Filename is dated day of the data in the file
+o   Example raw_pit_company_reference_full_2019_12_31.csv.gz latest time stamp is 2019 -12-31 (data through the 31st).
+ 
+Raw Daily PIT Company Reference File 
+·      Current State
+o   Filename is dated one day after the data in the file.
+o   Example raw_pit_company_reference_daily_2020_01_05.csv.gz latest time stamp is 2020-01-04 (data through the 4th not the 5th).
+·      Future State
+o   Filename is dated day of the data in the file
+o   Example raw_pit_company_reference_daily_2020_01_04.csv.gz latest time stamp is 2020-01-04 (data through the 4th).
+
+Raw Full Job Records
+·      Current State
+o   Filename is dated day of the data in the file.
+o   Data is placed in JDE/Standard/Feeds/Raw Full Job Records/2020/01/ with file date of raw_job_archive_2019_12_31.tar.gz
+·      Future State
+o   Data will be placed in JDE/Standard/Feeds/Raw Full Job Records/2019/31/ with a file date of raw_job_archive_2019_12_31.tar.gz
+Raw Full Job Descriptions
+·      Current State
+o     Filename is dated one day after the data in the file.
+o   Data is placed in JDE/Standard/Feeds/Raw Full Job Descriptions/2020/01/ with file date of linkup_job_descriptions_2020-01-01.tar.gz
+·      Future State
+o   Data will be placed in JDE/Standard/Feeds/Raw Full Job Descriptions/2019/31/ with a file date of  linkup_job_descriptions_2019-12-31.tar.gz
+
+Raw Full Company Scrape Log 
+·      Current State
+o   Filename is dated two days after the data in the file.
+o   Example the file generated on November 1, 2019 that includes data through October 31, 2019 is uploaded to the location JDE/Standard/Feeds/Raw Full Company Scrape Log/2019/11/raw_company_scrape_log_full_2019-11-01.csv.gz
+·      Future State
+o   Example above file will be JDE/Standard/Feeds/Raw Full Company Scrape Log/2019/10/raw_company_scrape_log_full_2019-10-31.csv.gz
+
+Raw Daily Company Scrape Log
+·      Current State
+o    Filename is dated two days after the data in the file.
+o    Example raw_company_scrape_log_daily_2019-11-06.csv.gz contains scrape log records for the day 2019-11-04.
+·      Future State
+o   Filename is dated day of the data in the file
+o   Example raw_company_scrape_log_daily_2019-11-04.csv.gz contains scrape log dates for the day 2019-11-04.
+
+Company and Ticker Analytic Files
+·      Current State
+o    Filename is dated day of the data in the file.
+o    Example core_company_analytics_2020-01-16.csv.gz contains company analytics  for the day 2019-01-16.
+Example core_ticker_analytics_2020-01-16.csv.gz contains ticker analytics for the day 2019-01-16.
+·      Future State
+o   No change
+
+Raw Daily Job Records
+·      Current State
+o   Filename is dated day of the data in the file.
+o   Example raw_daily_2019-12-14 has Contains daily data for the day 2019-12-14
+·      Future State
+o   No change
+
