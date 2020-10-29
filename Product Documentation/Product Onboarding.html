@@ -13076,13 +13076,14 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">xml.etree</span> <span class="k">import</span> <span class="n">ElementTree</span> <span class="k">as</span> <span class="n">ET</span>
+<span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span> <span class="k">as</span> <span class="n">ET</span>
 
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13098,8 +13099,9 @@ div#notebook {
 <li>Hash is used to join to job descriptions and is the unique identifier for the table.  This is an md5 of the URL.</li>
 <li>Company id is used to lookup refence data</li>
 <li>Title is direct from the company career portal where onet occupation code is an NLP solution using job records and descriptions to get normalized titles</li>
-<li>geographic information is related to the job record</li>
-<li>created is the first day we see a job active on a career site where delete_date is the first date we see it is no longer there.  These are the 2 key dates to use when starting.</li>
+<li>Geographic information is related to the job record</li>
+<li>Created is the first day we see a job active on a career site where delete_date is the first date we see it is no longer there.  These are the 2 key dates to use when starting.</li>
+<li>Job records deleted prior to 2014 will have a delete date that matches the last checked date.</li>
 </ul>
 
 </div>
@@ -13107,10 +13109,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JobRecords</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw-sample-jobs.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span><span class="p">);</span> <span class="n">JobRecords</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JobRecords</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw-sample-jobs.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="mi">100</span><span class="p">);</span> <span class="n">JobRecords</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13123,7 +13125,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -13172,7 +13174,7 @@ div#notebook {
       <td>Bank of America Corporation</td>
       <td>El Cerrito</td>
       <td>CA</td>
-      <td>94530</td>
+      <td>94530.0</td>
       <td>USA</td>
       <td>2015-04-16T12:25:01+00:00</td>
       <td>2015-04-23T08:16:47+00:00</td>
@@ -13190,7 +13192,7 @@ div#notebook {
       <td>Bank of America Corporation</td>
       <td>Tecopa</td>
       <td>CA</td>
-      <td>92389</td>
+      <td>92389.0</td>
       <td>USA</td>
       <td>2008-06-25T11:21:00+00:00</td>
       <td>2008-07-22T22:50:00+00:00</td>
@@ -13202,24 +13204,6 @@ div#notebook {
     </tr>
     <tr>
       <th>2</th>
-      <td>0234422f9c5eff7f6d1d008c3c31dae6</td>
-      <td>UI Artist, Double Helix Games, Amazon Game Studios</td>
-      <td>469</td>
-      <td>Amazon.com, Inc.</td>
-      <td>Irvine</td>
-      <td>CA</td>
-      <td>92606</td>
-      <td>USA</td>
-      <td>2015-06-20T02:39:07+00:00</td>
-      <td>2015-09-16T00:17:53+00:00</td>
-      <td>NaN</td>
-      <td>2015-09-18T07:51:10+00:00</td>
-      <td>NaN</td>
-      <td>27-1014.00</td>
-      <td>https://us-amazon.icims.com/jobs/331305/ui-artist%2c-double-helix-games%2c-amazon-game-studios/job?in_iframe=1</td>
-    </tr>
-    <tr>
-      <th>3</th>
       <td>0a5cf0310984a8c86bb42b1269640b28</td>
       <td>Home Retention Specialist/Collector I - Russell Ranch, CA (Part-Time) - 12/19/11</td>
       <td>381</td>
@@ -13237,14 +13221,14 @@ div#notebook {
       <td>http://bacfhrs.taleo.net/careersection/2/jobdetail.ftl?lang=en&amp;job=1100063761</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>3</th>
       <td>0a7cd92ca3f7277442bbd157c018a968</td>
       <td>South San Diego-Sales &amp; Service Specialist-Jackson Hyde-CA</td>
       <td>381</td>
       <td>Bank of America Corporation</td>
       <td>Alpine</td>
       <td>CA</td>
-      <td>91903</td>
+      <td>91903.0</td>
       <td>USA</td>
       <td>2010-03-31T15:11:00+00:00</td>
       <td>2010-03-31T15:11:00+00:00</td>
@@ -13255,14 +13239,14 @@ div#notebook {
       <td>http://bacfhrs.taleo.net/careersection/2/jobdetail.ftl?lang=en&amp;job=1000015119</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>4</th>
       <td>03ffb7f37da9f17b3c9806fb032363c8</td>
       <td>Personal Banker - Hialeah Gardens Banking Center - Hialeah Gardens - Fl</td>
       <td>381</td>
       <td>Bank of America Corporation</td>
       <td>Hialeah</td>
       <td>FL</td>
-      <td>33016</td>
+      <td>33016.0</td>
       <td>USA</td>
       <td>2013-06-26T21:40:49+00:00</td>
       <td>2013-07-10T13:00:20+00:00</td>
@@ -13273,14 +13257,14 @@ div#notebook {
       <td>https://bacfhrs.taleo.net/careersection/2/jobdetail.ftl?job=1300035406&amp;lang=en</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>5</th>
       <td>07faeba744c2ca2d0525e78b6b08e142</td>
       <td>Mortgage Loan Officer-Palm Desert</td>
       <td>381</td>
       <td>Bank of America Corporation</td>
       <td>Palm Desert</td>
       <td>CA</td>
-      <td>92211</td>
+      <td>92211.0</td>
       <td>USA</td>
       <td>2009-06-21T09:34:00+00:00</td>
       <td>2009-06-25T10:53:00+00:00</td>
@@ -13291,14 +13275,14 @@ div#notebook {
       <td>https://bacfhrs.taleo.net/servlets/CareerSection?art_ip_action=FlowDispatcher&amp;flowTypeNo=13&amp;pageSeq=2&amp;reqNo=730651&amp;art_servlet_language=en&amp;csNo=2#topOfCsPage</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>6</th>
       <td>0c392d37eb6dfb15b1ffc2a48b8d95e7</td>
       <td>Warehouse Team Member (Seasonal, Part Time, Flexible Hours)</td>
       <td>469</td>
       <td>Amazon.com, Inc.</td>
       <td>englewood</td>
       <td>CO</td>
-      <td>80110</td>
+      <td>80110.0</td>
       <td>USA</td>
       <td>2019-01-15T16:06:00+00:00</td>
       <td>2019-03-31T15:07:00+00:00</td>
@@ -13309,7 +13293,7 @@ div#notebook {
       <td>https://www.amazon.jobs/en/jobs/SF190020328/warehouse-team-member-seasonal-part-time-flexible-hours#amazonjobs</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>7</th>
       <td>0ee6d7263a67121e8405af8ad8fdef2a</td>
       <td>Responsable des opérations de contrôle d'inventaire et d'assurance qualité (H/F)</td>
       <td>469</td>
@@ -13327,112 +13311,40 @@ div#notebook {
       <td>https://www.amazon.jobs/en/jobs/652318/responsable-des-operations-de-controle-d-inventaire-et-d-assurance-qualite-h-f#amazonjobs</td>
     </tr>
     <tr>
+      <th>8</th>
+      <td>0fd2b893247320af08b14f69e92ea3c9</td>
+      <td>Solutions Architect Manager, Specialist Team</td>
+      <td>469</td>
+      <td>Amazon.com, Inc.</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2019-02-28T17:07:00+00:00</td>
+      <td>2019-03-31T15:06:00+00:00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>15-1199.09</td>
+      <td>https://www.amazon.jobs/en/jobs/805109/solutions-architect-manager-specialist-team#amazonjobs</td>
+    </tr>
+    <tr>
       <th>9</th>
-      <td>0aaf97d36a5279ac18a43d1e34344232</td>
-      <td>Relationship Manager-Newton/Waltham, MA Area</td>
+      <td>0b86efb8ab6c6f4680ec1977813eb3ad</td>
+      <td>Support Services Specialist II - Irvine, California</td>
       <td>381</td>
       <td>Bank of America Corporation</td>
-      <td>Newton</td>
-      <td>MA</td>
-      <td>02458</td>
-      <td>USA</td>
-      <td>2015-10-15T20:58:31+00:00</td>
-      <td>2015-10-21T22:26:18+00:00</td>
-      <td>NaN</td>
-      <td>2015-10-23T06:54:04+00:00</td>
-      <td>NaN</td>
-      <td>11-3031.02</td>
-      <td>https://bacfhrs.taleo.net/careersection/2/jobdetail.ftl?job=1500064736&amp;lang=en</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>00fb6293db0ff8adfe909927f2fc2056</td>
-      <td>Sr.Technical Program Manager-Largest Online Marketplaces</td>
-      <td>469</td>
-      <td>Amazon.com, Inc.</td>
-      <td>Seattle</td>
-      <td>WA</td>
-      <td>98155</td>
-      <td>USA</td>
-      <td>2011-06-04T18:29:19+00:00</td>
-      <td>2012-03-27T01:22:48+00:00</td>
-      <td>NaN</td>
-      <td>2012-03-29T07:56:48+00:00</td>
-      <td>False</td>
-      <td>11-2021.00</td>
-      <td>https://us-amazon.icims.com/jobs/143970/job</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>0e5df8110913e18e1e6f0eeaa2b93661</td>
-      <td>Software Development Engineer – Amazon Fashion Mobile</td>
-      <td>469</td>
-      <td>Amazon.com, Inc.</td>
-      <td>Seattle</td>
-      <td>WA</td>
-      <td>98113</td>
-      <td>USA</td>
-      <td>2014-05-30T11:17:56+00:00</td>
-      <td>2014-06-27T08:52:34+00:00</td>
-      <td>NaN</td>
-      <td>2014-06-29T23:20:05+00:00</td>
-      <td>False</td>
-      <td>15-1132.00</td>
-      <td>https://us-amazon.icims.com/jobs/269323/software-development-engineer-%e2%80%93-amazon-fashion-mobile/job?in_iframe=1</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>0bb5e6ffefd6198d9c298aa94e40a7fd</td>
-      <td>Programmer Professional Markets - Jersey City, NJ</td>
-      <td>381</td>
-      <td>Bank of America Corporation</td>
-      <td>Jersey City</td>
-      <td>NJ</td>
-      <td>07097</td>
-      <td>USA</td>
-      <td>2013-09-05T14:38:50+00:00</td>
-      <td>2013-09-16T16:46:34+00:00</td>
-      <td>NaN</td>
-      <td>2013-09-18T19:21:51+00:00</td>
-      <td>False</td>
-      <td>15-1131.00</td>
-      <td>https://bacfhrs.taleo.net/careersection/2/jobdetail.ftl?job=1300055219&amp;lang=en</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>05e060a4db459d502ed71fc78ea75f62</td>
-      <td>Database Administrator II - AMZ1781</td>
-      <td>469</td>
-      <td>Amazon.com, Inc.</td>
-      <td>Seattle</td>
-      <td>WA</td>
-      <td>98113</td>
-      <td>USA</td>
-      <td>2017-07-02T09:46:00+00:00</td>
-      <td>2017-07-21T01:47:00+00:00</td>
-      <td>NaN</td>
-      <td>2017-07-22T19:00:00+00:00</td>
-      <td>NaN</td>
-      <td>15-1141.00</td>
-      <td>https://us-amazon.icims.com/jobs/554664/database-administrator-ii---amz1781/job?in_iframe=1</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>042115563f45903598ecc13e26e5f8bd</td>
-      <td>Relationship Manager (Retail Banking) FOOTHILLS Market - North Arcadia, Monrovia, San Dimas, Duarte and Eastland - West</td>
-      <td>381</td>
-      <td>Bank of America Corporation</td>
-      <td>Arcadia</td>
+      <td>Irvine</td>
       <td>CA</td>
-      <td>91066</td>
+      <td>92606.0</td>
       <td>USA</td>
-      <td>2017-01-25T01:57:15+00:00</td>
-      <td>2017-04-26T00:21:06+00:00</td>
+      <td>2012-10-30T21:59:56+00:00</td>
+      <td>2012-11-08T07:55:58+00:00</td>
       <td>NaN</td>
-      <td>2017-04-27T12:27:18+00:00</td>
-      <td>NaN</td>
-      <td>11-3031.02</td>
-      <td>http://careers.bankofamerica.com/job-detail/17004974/global/us/relationship-manager-retail-banking-foothills-market-north-arcadia-monrovia-san-dimas-duarte-and-eastland-west-covina-areas-ca-bilingual-spanish-preferred#Arcadia</td>
+      <td>2012-11-10T10:20:11+00:00</td>
+      <td>False</td>
+      <td>15-1151.00</td>
+      <td>https://bacfhrs.taleo.net/careersection/2/jobdetail.ftl?job=1200077150&amp;lang=en</td>
     </tr>
   </tbody>
 </table>
@@ -13455,13 +13367,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">descriptions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
         <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
                  <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;raw-sample-descriptions.xml&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getroot</span><span class="p">())),</span>       
-        <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;job_hash&#39;</span><span class="p">,</span><span class="s1">&#39;description&#39;</span><span class="p">]);</span> <span class="n">descriptions</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;job_hash&#39;</span><span class="p">,</span><span class="s1">&#39;description&#39;</span><span class="p">]);</span> <span class="n">descriptions</span><span class="p">[</span><span class="mi">25</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13474,7 +13386,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -13503,29 +13415,29 @@ div#notebook {
   </thead>
   <tbody>
     <tr>
-      <th>10</th>
-      <td>0075911e53aa67e7c4432a5bd355caef</td>
-      <td>Job Description:\n\nFinancial Center Client Service Representative I s FC CSR I are responsible for providing a positive customer experience that leads to improved satisfaction and sales. FC CSR I s process transactions accurately and efficiently in a fast-paced environment while simultaneously introducing products and services that meet the customers needs and encouraging customers to expand their relationship with Bank of America. This position was previously known as the Teller position within the Financial Center. Duties may include, but are not limited to the following; a) Create a connection and develop rapport with customers to provide outstanding, personalized service, b) Listen carefully and connect with customers to understand their top financial priorities and to uncover products and solutions that will benefit them, c) Ensure customers/clients are quickly connected to the appropriate teammate with the expertise to meet their needs, d) Meet or exceed sales goals by influencing customers to learn about products/services that will benefit them, e) Build, develop and maintain partnerships with teammates and specialists to maximize effectiveness and serve customers, f) Accurately and efficiently process transactions such as customer deposits and cashing checks, g) Assist customers with inquiries and/or problem resolution in a professional and composed manner, and escalate to manager as appropriate, h) Inform and educate customers on how to conduct simple transactions through self-service technologies, i) Follow established policies, procedures and guidelines to protect both our customers and Bank of America, j) May be required to work Saturdays and/or extended hours.\n\nRequired Skills:\n\n* Proven results in exceeding goals in areas of sales and service in a customer-centric, results-driven environment\n\n* Minimum of six months customer service experience in financial services, retail sales or a goal-oriented environment\n\n* A minimum of six months experience with cross-selling, up-selling and/or referring products\n\n* Thrive on engaging with customers; can begin a conversation, build rapport, and handle objections\n\n* Ability to identify customer financial needs, goals and objectives; comfortable asking customers about their personal finances\n\n* Ability to sell customers on meeting with a sales associate to learn about products/services\n\n* Ability to respond and assist customers with inquiries and/or problem resolution\n\n* Ability to work effectively as a team member\n\n* Strong communication skills (including verbal and non-verbal) and active listening skills\n\n* Careful attention to detail and time management\n\n* Proficiency in basic computer skills\n\n* Pass pre-employment assessment\n\nDesired Skills:\n\n* Minimum of six months cash handling experience\n\nPosting Date: 12/21/2016\n\nLocation: US-TX-Houston\n\nTravel: No\n\nFull / Part-time: Part time\n\nHours Per Week: 20\n\nShift: 1st shift\n\nWeekly Schedule: Tue, Thurs, Friday and alternating Saturdays</td>
+      <th>25</th>
+      <td>011b4ad5c37aba1e827c2e4150847960</td>
+      <td>Job Description:\n\nMerrill Lynch Wealth Management is a leading provider of comprehensive wealth management and investment products and services for individuals and businesses. With 10,869 Financial Advisors and $1.9 trillion in client balances as of December 31, 2015, Merrill Lynch is among the largest businesses of its kind in the world.\n\nMerrill Lynch Wealth Management specializes in goals-based wealth management, including planning for retirement, education, legacy, and other life goals through investment advice and guidance. Merrill Lynchs financial advisors help clients pursue the life they envision through a one-on-one relationship with a financial advisor committed to their needs an advisor with access to the investment insights of Merrill Lynch and the banking convenience of Bank of America.\n\nMerrill Lynch Wealth Management is part of Bank of America Corporation.\n\nThe Team Financial Advisor (TFA) role is a specific functional role aligned to a Financial Advisor (FA) team for the purpose of concentrating on a targeted aspect of the Teams business. The primary focus of the TFA Investments &amp; Financing role is to define your teams investment philosophy and process by clearly articulating different investment approaches and strategies that are implemented through a repeatable process that leverages the firms research, practice skills, capabilities and perspectives on the market.\n\nKey Responsibilities\n\n* Understand all aspects of an optimal practice and complete the training and development needed to prepare for a successful career as a Financial Advisor\n\n* Define your teams investment philosophy and repeatable investment process\n\n* Establish investment discipline that focuses on a goals-based approach and implement through model portfolios and products available across the Merrill Lynch Platforms\n\n* Understand clients goals and recommend investment solutions aligned to them\n\n* Remain knowledgeable on Merrill Lynch investment platforms &amp; product offerings\n\n* Select business platforms that are efficient and scalable to accompany a growing business\n\n* Obtain relevant management designations (e.g., CIMA)\n\n* Follow disciplined process to monitor and respond to external events\n\n* Manage and monitor client portfolios by establishing portfolios using BofA Merrill Lynch Global Research and other approved outside sources that meet the stated needs of clients and reviewing portfolios for potential rebalancing quarterly\n\n* Engage in regular discussions with clients throughout the year (particularly during more volatile periods and when life events may be occurring)\n\n* Deliver on clients cash management, financing and lending strategies needs\n\n* Ensure focus on risk strategy by aligning teams to fiduciary standards\n\n* Establish and maintain relationship with the management team and inform them of any circumstances that require supervisory attention/review/approval per compliance guidelines and policies to help facilitate risk mitigation\n\n* Complete required training, obtain industry licenses (Series 7 &amp; 66), master assessments, maintain continuing education requirements and meet minimum performance standards\n\n* Source prospective clients, capitalize on referrals and assess customer needs\n\n* Deliver highly customized solutions and through collaboration deliver the full resources of Bank of America Merrill Lynch\n\nThis position may be subject to SAFE Act registration requirements. Pursuant to the SAFE Act requirements, all employees engaged in residential loan mortgage originations must register with the federal registry system and remain in good standing. If your position requires SAFE Act registration, you will be required to register and to submit to the required SAFE Act background check and registration process. Failure to obtain and/or maintain SAFE Act registration may result in your immediate termination. Legal authorization to work in the US now and in the future without sponsorship is required.\n\nQualifications:\n\n* Proven ability to assess needs of clients and recommend appropriate solutions/interventions\n\n* Proven ability to apply analytical skills to business problems\n\n* Proven ability to articulate approaches and concepts\n\n* Proven ability to engage with and influence others\n\n* Proven ability to work collaboratively on a team and with key partners\n\n* Proven ability to listen and probe for clarity and understanding\n\n* Ability to source clients through prospecting and networking\n\n* Ability to work in an environment where the majority of your compensation is tied to your performance\n\n* Effective communication skills (written and verbal)\n\n* Goal and results oriented\n\n* Strong follow-through skills\n\n* Computer/technical literacy and proficiency in Microsoft Word, PowerPoint, Excel\n\nNOTE: In addition to Investment and Financing, this position may be considered for both the Business Management and Planning roles\n\nIdeal candidate will have:\n\n* At minimum a Bachelors Degree\n\n* Credentialed with CIMA, CFP or CFA Designation(s)\n\n* Experience working in the Financial Services Industry\n\n* Proficiency in using SalesForce / Client Relationship Manager Tool\n\n* Strong understanding of the Financial Advisor role\n\nPosting Date: 12/21/2016\n\nLocation: US-TX-San Antonio, US-TX-San Antonio\n\nTravel: Yes, 5% of the time\n\nFull / Part-time: Full time\n\nHours Per Week: 37.5\n\nShift: 1st shift</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>007dff7b1b1e6c27afdb2d95b7228b49</td>
-      <td>Job Description:\n\nFinancial Center Client Service Representative I s FC CSR I are responsible for providing a positive customer experience that leads to improved satisfaction and sales. FC CSR I s process transactions accurately and efficiently in a fast-paced environment while simultaneously introducing products and services that meet the customers needs and encouraging customers to expand their relationship with Bank of America. This position was previously known as the Teller position within the Financial Center. Duties may include, but are not limited to the following; a) Create a connection and develop rapport with customers to provide outstanding, personalized service, b) Listen carefully and connect with customers to understand their top financial priorities and to uncover products and solutions that will benefit them, c) Ensure customers/clients are quickly connected to the appropriate teammate with the expertise to meet their needs, d) Meet or exceed sales goals by influencing customers to learn about products/services that will benefit them, e) Build, develop and maintain partnerships with teammates and specialists to maximize effectiveness and serve customers, f) Accurately and efficiently process transactions such as customer deposits and cashing checks, g) Assist customers with inquiries and/or problem resolution in a professional and composed manner, and escalate to manager as appropriate, h) Inform and educate customers on how to conduct simple transactions through self-service technologies, i) Follow established policies, procedures and guidelines to protect both our customers and Bank of America, j) May be required to work Saturdays and/or extended hours.\n\nRequired Skills:\n\n* Proven results in exceeding goals in areas of sales and service in a customer-centric, results-driven environment\n\n* Minimum of six months customer service experience in financial services, retail sales or a goal-oriented environment\n\n* A minimum of six months experience with cross-selling, up-selling and/or referring products\n\n* Thrive on engaging with customers; can begin a conversation, build rapport, and handle objections\n\n* Ability to identify customer financial needs, goals and objectives; comfortable asking customers about their personal finances\n\n* Ability to sell customers on meeting with a sales associate to learn about products/services\n\n* Ability to respond and assist customers with inquiries and/or problem resolution\n\n* Ability to work effectively as a team member\n\n* Strong communication skills (including verbal and non-verbal) and active listening skills\n\n* Careful attention to detail and time management\n\n* Proficiency in basic computer skills\n\n* Pass pre-employment assessment\n\nDesired Skills:\n\n* Minimum of six months cash handling experience\n\nPosting Date: 12/21/2016\n\nLocation: US-TX-Dallas\n\nTravel: No\n\nFull / Part-time: Full time\n\nHours Per Week: 40\n\nShift: 1st shift\n\nWeekly Schedule: Monday - Thursday 9-6pm Friday 9:00am -6:3pm, Saturday 9:30-1:30pm</td>
+      <th>26</th>
+      <td>012ed2e82a728e807e4448e5578457ff</td>
+      <td>Job Description:\n\nProvides expertise, advice and counsel based on advanced business and/or credit review experience to a complex business and/or across several business groups. Provides leadership for projects and team activities. Functional responsibilities include establishing Monitoring Plans for assigned credit portfolio, assessing associated Level and Direction of Risk ratings and acting as Examiner-in-Charge/EIC. Proactively implements credit review strategy for the sound application of risk based practices by defining scope, program, and review and exam procedures. Exercises judgment and influences senior business managers and peers. Drives completion of credit issues. Helps business partners balance their business strategy with appropriate risk management controls. Contributes to the development, implementation and communication of Credit Review's missions, goals and strategies. Interacts with regulatory agencies, external consultants and other internal risk management groups. Assesses and advises on the impact of industry-level, geo-political and economic trends to credit portfolios.\n\nAssociate will manage and participate in credit examinations of various commercial credit portfolios including Wholesale Credit, Global Commercial Banking, Banc of America Leasing and Special Assets Group. Associate will work with examination teams to assess the quality of credit risk management processes for specialized and general domestic industries and regional portfolios. After requisite training period, associate will plan, manage and lead examinations, compile findings, discuss issues and conclusions with unit management, recommend corrective actions and draft a formal report for executive management. Associate will be responsible for monitoring risk in an assigned portfolio by performing reviews of new business and existing transactions, evaluating risk rating accuracy, identifying emerging risks and assessing their potential impact on portfolio credit quality, and developing industry knowledge for the assigned portfolio. Associate will prepare quarterly assessment reports summarizing findings of ongoing monitoring activities, identify focus credits for management attention, and conduct periodic meetings with senior management and regulators to discuss results of ongoing monitoring activities.\n\nAdditional Job Description\n\nAdditional Job Description\n\nRequired Skills:\n\no A minimum of 10 years of credit related experience including understanding of large or middle market commercial lending.\n\no Strong credit analysis and project management skills, excellent verbal and written communication skills, and sound listening and leadership skills.\n\no Ability to support conclusions through fact-based analysis and ability to influence senior leaders.\n\nAdditional Desired Skills:\n\no Experience in risk management, commercial lending, regulatory agencies, special assets, leveraged finance, leasing or debt underwriting is preferred.\n\no Experience with a Credit Review examination process.\n\no Resourcefulness in identifying, assessing, and reporting on emerging risks.\n\nPosting Date: 12/21/2016\n\nLocation: US-NY-New York, US-NC-Charlotte, US-TX-Dallas\n\nTravel: Yes, 10% of the time\n\nFull / Part-time: Full time\n\nHours Per Week: 40\n\nShift: 1st shift</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>008841fe15302a54b1f77730e8606ff1</td>
-      <td>Job Description:\n\nFinancial Center Client Service Representative I s FC CSR I are responsible for providing a positive customer experience that leads to improved satisfaction and sales. FC CSR I s process transactions accurately and efficiently in a fast-paced environment while simultaneously introducing products and services that meet the customers needs and encouraging customers to expand their relationship with Bank of America. This position was previously known as the Teller position within the Financial Center. Duties may include, but are not limited to the following; a) Create a connection and develop rapport with customers to provide outstanding, personalized service, b) Listen carefully and connect with customers to understand their top financial priorities and to uncover products and solutions that will benefit them, c) Ensure customers/clients are quickly connected to the appropriate teammate with the expertise to meet their needs, d) Meet or exceed sales goals by influencing customers to learn about products/services that will benefit them, e) Build, develop and maintain partnerships with teammates and specialists to maximize effectiveness and serve customers, f) Accurately and efficiently process transactions such as customer deposits and cashing checks, g) Assist customers with inquiries and/or problem resolution in a professional and composed manner, and escalate to manager as appropriate, h) Inform and educate customers on how to conduct simple transactions through self-service technologies, i) Follow established policies, procedures and guidelines to protect both our customers and Bank of America, j) May be required to work Saturdays and/or extended hours.\n\nRequired Skills:\n\n* Proven results in exceeding goals in areas of sales and service in a customer-centric, results-driven environment\n\n* Minimum of six months customer service experience in financial services, retail sales or a goal-oriented environment\n\n* A minimum of six months experience with cross-selling, up-selling and/or referring products\n\n* Thrive on engaging with customers; can begin a conversation, build rapport, and handle objections\n\n* Ability to identify customer financial needs, goals and objectives; comfortable asking customers about their personal finances\n\n* Ability to sell customers on meeting with a sales associate to learn about products/services\n\n* Ability to respond and assist customers with inquiries and/or problem resolution\n\n* Ability to work effectively as a team member\n\n* Strong communication skills (including verbal and non-verbal) and active listening skills\n\n* Careful attention to detail and time management\n\n* Proficiency in basic computer skills\n\n* Pass pre-employment assessment\n\nDesired Skills:\n\n* Minimum of six months cash handling experience\n\nPosting Date: 12/21/2016\n\nLocation: US-TX-Irving\n\nTravel: No\n\nFull / Part-time: Part time\n\nHours Per Week: 20\n\nShift: 1st shift\n\nWeekly Schedule: Tuesday,Thurday ,Friday, Saturday</td>
+      <th>27</th>
+      <td>013a290cbafcc07589146030f2311532</td>
+      <td>Job Description:\n\nPreferred Sales Associates are responsible for delivering world class service, uncovering and understanding our clients known and unknown needs and finding solutions to those needs. Preferred Sales Associates interact with clients over the phone leveraging multiple computer based systems. Preferred Sales Associates are responsible for sales, operations, quality and client experience goals and take part in an incentive plan driven by their success in these goals. Preferred Sales Associates typically have at least one year of sales experience in a salary plus incentive environment with individual sales goals where you routinely met or exceeded defined goals and enjoy working in a competitive, client centric and high energy environment.\n\nRequired Skills\n\n* Ability to work within the operating hours and days for this position as outlined in the posted job requisition.\n\n* At least one year of sales experience in a goal and/or commission oriented environment.\n\n* Excellent oral communication skills.\n\n* Ability to work effectively and efficiently and multi-task in a high call volume environment.\n\n* Self-motivated and results-oriented.\n\n* Excellent organizational skills.\n\n* Strong decision making ability.\n\n* Problem solving skills.\n\n* Ability to engage with customers, begin a conversation, build rapport, and handle objections.\n\n* Comfortable with ongoing change and learning new technology/processes.\n\n* Comfortable receiving ongoing performance feedback and coaching.\n\n* Take inbound calls for the entire shift, with structured breaks.\n\n* At least an intermediate ability in computer skills. Ability to navigate multiple computer systems while interacting with the customer.\n\nDesired Skills\n\n* Previous call center experience.\n\n* Computer skills.\n\n* Banking/financial services experience.\n\n* Telephone sales experience.\n\nPosting Date: 12/21/2016\n\nLocation: US-TX-Fort Worth\n\nTravel: No\n\nFull / Part-time: Full time\n\nHours Per Week: 40\n\nShift: 1st shift\n\nWeekly Schedule: 1st Shift</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>00a89fc2fb02ca7391ca1549122d1f36</td>
-      <td>Job Description:\n\nFinancial Solutions Advisor (Registered)\n\nThe primary role of the Financial Center Financial Solutions Advisor (FSA) is to deepen banking and investment relationships with Mass Affluent customers. Located in Financial Centers with a concentration of Mass Affluent customers, the FSA will act as the primary point of contact for Mass Affluent customers, although will not have a book of business. Walk-in customers will be directed to the FSA who will provide end to end comprehensive advice and customized solutions to help customers achieve their financial goals. Customer reviews/presentations will include a review of investment goals and prepare presentations that recommend products such as stocks, bonds, mutual funds, annuities, banking, and managed money solutions. The FSA will transact point of fulfillment investment and banking business for clients with less than $250k in investable assets. In addition, the FSA will engage in daily relationship calling to pre-selected Bank of America or Merrill Edge customers inviting them into the Financial Center for a customer review.\n\nThe FSA should have experience in investment, banking and lending products to bridge banking and brokerage solutions. The FSA will build and maintain effective partnerships with internal business partners including other Financial Center teammates, Small Business Bankers, Mortgage Loan Officers, Financial Advisors, in Consumer Banking Services (CBS) and Merrill Edge Advisory Center (MEAC). The FSA will directly report to a Regional Sales Manager on the Preferred Banking &amp; Investments team and work closely with specialist partners to drive referrals.\n\nPrimary Responsibilities\n\n* Assess customer goals by conducting financial opportunity sessions with new or existing banking clients. Leverage business knowledge to determine prudent and appropriate strategy to meet clients needs by recommending financial solutions for Mass Affluent clients.\n\n* Build strategic partnership with Financial Center as a valued team member. Refer clients with an investment need and more than $250K in investable assets to a local Merrill Lynch Wealth Advisory Complex or US Trust office. Refer to other appropriate business channel(s) (i.e. Small Business, Home Loans) as needed\n\n* Demonstrate strong awareness of enterprise-wide opportunities to serve our customers.\n\n* Pro-actively build relationships with potential and existing clients to meet business objectives.\n\n* Comply with all applicable banking and investment laws, regulations, company polices, and procedures, in order to serve the clients' best interests and enhance client satisfaction.\n\nEnterprise Role Overview:\n\nFSA develops new investment and banking business through leads generated from internal partnering. The FSA will identify, profile and meet with clients to analyze and review financial goals. Engages customers in the lobby for delivery of store value proposition. The FSA will triage client leads and make referrals to appropriate internal service providers based on client needs and asset thresholds. Participates in on-going training and interaction with the Merrill Lynch Wealth Complex. The role is a bridge between banking and brokerage, therefore the FSA must have a general awareness of core banking and investment solutions. The FSA should be able to provide an enterprise product view for our clients, executing referrals across banking and brokerage lines. Demonstrates proficiency with appropriate banking center systems and routines to support sales process. Series 7 &amp; 66 (63 &amp; 65 in lieu of 66) required and Insurance licenses desired. CFP or CRCP preferred. 4 year business degree preferred. One+ years experience in business development and investments training. This position is subject to SAFE Act registration requirements. Pursuant to the SAFE Act requirements, all employees engaged in residential loan mortgage originations must register with the federal registry system and remain in good standing. Since your position requires SAFE Act registration, you will be required to register and to submit to the required SAFE Act background check and registration process. Failure to obtain and/or maintain SAFE Act registration may result in your immediate termination.\n\nRequired Skills:\n\n3+ years of proven investment business development experience, including investment training. In-depth knowledge of investment products and services.\n\nOne+ years experience in business development and investments training.\n\nExperience creating a comprehensive financial strategy, assessing needs, identifying, and recommending financial solutions.\n\nKnowledge of banking (credit and deposit) products and services desired.\n\nMust be able to provide evidence of consultative communication and relationship building skills leading to client service, fulfillment and delight in previous roles.\n\nSeries 7 required. This role also requires series 66 (63 &amp; 65 in lieu of 66). If you do not currently hold the 66 but have either a 63 or 65 an offer can be extended with the condition that a passing score is received for the missing series within 60 days.\n\nA true team player and collaborator, translating knowledge and experience into strong and productive relationships internally and externally.\n\nResults oriented with proven track record of outstanding ability to motivate and influence other to accomplish objectives: present oneself assertively, convincingly and with confidence to establish credibility and respect with others.\n\nDedicated, enthusiastic, driven and performance-oriented; possesses a strong work ethic.\n\nHighly motivated self-starter, proactive, with intense focus on results. Conveys a sense of urgency to achieve business goals and exceed expectations.\n\nA respected business partner who adds value to the broader team and can diplomatically handle conflict; demonstrated ability to cultivate effective revenue generating partnerships with other LOBs.\n\nAbility to handle ambiguity and adapt to changing circumstances.\n\nAn impeccable reputation for integrity and consistency; must possess sound business ethics acting in the best interest of the client.\n\nExcellent time management and organizational skills.\n\nPreferred Skills:\n\n4 year degree desired, preferably in business related field.\n\nCertified Financial Planner (CFP) and/or Chartered Retirement Planning Counselor (CRCP) Designations desired.\n\nInsurance licenses desired.\n\nPosting Date: 12/21/2016\n\nLocation: US-CA-Glendale, US-CA-Lancaster, US-CA-Camarillo, US-CA-Mission Hills, US-CA-Panorama City, US-CA-Reseda, US-CA-Westlake Village, US-CA-Newbury Park, US-CA-Simi Valley, US-CA-Agoura, US-CA-Thousand Oaks, US-CA-N\n\nTravel: No\n\nFull / Part-time: Full time\n\nHours Per Week: 40\n\nShift: 1st shift\n\nWeekly Schedule: Monday-Friday open to close of banking center + some Saturdays</td>
+      <th>28</th>
+      <td>013dc062127a790424b23e701ff71fd0</td>
+      <td>Job Description:\n\nMerrill Lynch Wealth Management is a leading provider of comprehensive wealth management and investment products and services for individuals and businesses. With 10,869 Financial Advisors and $1.9 trillion in client balances as of December 31, 2015, Merrill Lynch is among the largest businesses of its kind in the world.\n\nMerrill Lynch Wealth Management specializes in goals-based wealth management, including planning for retirement, education, legacy, and other life goals through investment advice and guidance. Merrill Lynchs financial advisors help clients pursue the life they envision through a one-on-one relationship with a financial advisor committed to their needs an advisor with access to the investment insights of Merrill Lynch and the banking convenience of Bank of America.\n\nMerrill Lynch Wealth Management is part of Bank of America Corporation.\n\nThe Practice Management Development (PMD) Associate role is a 43 month development program for professionals who wish to build a wealth management business and become a full-fledged Merrill Lynch Financial Advisor (FA).\n\nPMD is a structured and disciplined program that demonstrates our ongoing commitment to the growth and progress of our Merrill Lynch Financial Advisors. PMD offers new advisors the most professional and client focused sales, investment, and business management training in the industry. PMD Associates will build upon their knowledge of these topics throughout the duration of the program, while focusing on developing client relationships.\n\nWith the assistance of mentors and managers, our PMD Associates will learn to develop a pipeline of affluent clients, identify client needs, develop relationships with existing and prospective clients, review investment goals, prepare investment recommendations that align with client goals, and the business management skills needed to operate an optimal practice model.\n\nThe Practice Management Development Associate engages in:\n\n* Developing a book of business in order to meet and exceed the required performance hurdles\n\n* Effectively sourcing prospective clients, capitalizing on referrals, assessing customer needs, through collaboration, delivering the full resources of Bank of America and Merrill Lynch to the client, and delivering highly customized solutions to meet client needs\n\n* Recommending investment products and services that are suitable for prospects and clients based on their objectives, resources, time horizon, risk profile and preferences\n\n* Balancing investment management, sales activities, customer service, new client development, administrative, compliance and personal growth and development according to both a day-to-day and longer-term plan\n\n* Planning and managing resources (time, people, budget) to run an optimal practice\n\n* Seeking the expertise of specialists, where appropriate, to identify, banking, lending, planning and investment solutions for a client\n\n* Establishing and maintaining relationship with the management team and informing them of any circumstances that require supervisory attention/review/approval per compliance guidelines and policies\n\n* Completing required training, obtaining industry licenses (Series 7 &amp; 66), mastering assessments, maintaining continuing education requirements and meeting minimum performance standards\n\nPursuant to the SAFE Act requirements, all employees engaged in residential loan mortgage originations must register with the federal registry system and remain in good standing. If your position requires SAFE Act registration, you will be required to register and to submit to the required SAFE Act background check and registration process. Failure to obtain and/or maintain SAFE Act registration may result in your immediate termination. Legal authorization to work in the US now and in the future without sponsorship is required.\n\nThe Practice Management Development Associate receives:\n\n* A base salary through the full 43 months in the PMD program along with bonus potential. Upon completion of the PMD program, the candidate will be compensated in accordance with the Financial Advisor Incentive Compensation Plan.\n\n* The strength and name recognition of Merrill Lynch and Bank of America\n\n* World class investment, sales, and business management training throughout their career\n\n* Cutting edge Technology and industry leading platform to leverage for success\n\n* Access to a full array of investment and banking solutions for your clients\n\n* Mentors and Managers located within your local office to work with you towards your success\n\n* PMD Curriculum that includes CFP course work, wealth management curriculum, licensing and essential skills training from Managers and Mentors\n\nThe Practice Management Development program is designed for professionals who are ready to make a career transition and follow their passion of becoming a Financial Advisor.\n\nCandidate Qualifications :\n\nExperience\n\nCandidates for this role will have a history of high achievement demonstrated by a proven record of rapid advancement in exceeding goals and outperforming peers. The ideal candidate has applicable sales experience or has worked in a professional or entrepreneurial setting.\n\nSuccess Skills and Attributes\n\nThe ideal candidate will bring to the role a broad network of contacts and relationships along with the ability to develop a strong sales pipeline through prospecting, telemarketing and relationship building skills. Other success attributes candidates possess are:\n\n* Ability to influence people\n\n* Entrepreneurial and self motivated to succeed\n\n* Perseverance and resilience\n\n* Confident and engaging presence\n\n* Concise, inspiring communication\n\n* Client focus mentality\n\n* High professional standards and integrity\n\nEducation/Licenses\n\nThe ideal candidate will have at minimum a Bachelors degree. The following licenses/designations are preferred:\n\n* Series 7 and 66 licensed - The PMD curriculum assists candidates from outside the wealth management industry to prepare for and complete licensing requirements for both\n\n* Chartered Financial Analyst (CFA)\n\n* Certified Financial Planner (CFP)\n\nPosting Date: 12/21/2016\n\nLocation: US-CT-Hartford, US-CT-West Hartford, US-CT-Glastonbury, US-CT-Farmington, US-CT-Madison, US-CT-Southbury, US-MA-Worcester\n\nTravel: No\n\nFull / Part-time: Full time\n\nHours Per Week: 37.5\n\nShift: 1st shift</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>00bfaa967b098a7722f6263d5e35b36e</td>
-      <td>Job Description:\n\nCorporate job title: Vice President\n\nAn exciting opportunity has arisen for a passionate and driven pro-active project manager with strong Equity Derivatives and Equity Swaps knowledge.If you are looking to take the next step on your career then Bank of America Merrill Lynch has the opportunity for you.\n\nWe are looking for someone to take responsibility for running key strategic and regulatory projects in a front to back office capacity. You will liaise closely with our partners in Front Office, Middle Office, Operations, COO, Regulatory Reporting and Technology.\n\nAs Regulatory Project Manager your key responsibilities will involve:\n\n* Delivering Equities strategic initiatives for the Middle Office\n\n* Partnering closely with Front Office, Middle Office, Finance and Operations teams including Technology Partners to define/re-define business processes and implement related technology solutions.\n\n* Leading and managing full project lifecycle\n\n* Creating conceptual designs, both business process and technical\n\n* Communicating and influencing key stakeholders to gain buy in\n\nAs Regulatory Project Manager your skills and qualifications will include:\n\n* Front-to-back Equity Derivatives Product knowledge across Front, Middle and Back office (Trade Lifecycle)\n\n* Equity Swaps Product knowledge\n\n* Good regulatory knowledge (EMIR, MIFID etc.)\n\n* Strong Project Management skills with excellent knowledge of the Project Lifecycle\n\n* Strong Business Analysis skills\n\n* Comfortable working with Technology partners with knowledge around Agile development practices\n\nAbout Bank of America Merrill Lynch\n\nBank of America is one of the world's leading financial institutions, serving individual consumers, small- and middle-market businesses, large corporations and governments with a full range of financial and risk management products and services. Bank of America Merrill Lynch is the marketing name for the global banking and markets businesses.\n\nThe company has had a presence in EMEA since 1922. With offices in 23 countries on three continents, it offers an integrated and comprehensive set of products and services across Global Corporate and Investment Banking, Global Markets and Consumer Card, serving the needs of individual, corporate, institutional and government clients, combining the best of local knowledge and global expertise. Developing solutions for social and environmental challenges is at the core of Bank of America Merrill Lynch responsibility platform. In more than 90 countries around the world, we partner with employees, clients and stakeholders to help make financial lives better.\n\nApply\n\nIf you are interested in this opportunity please send your details to us by applying online with your CV.\n\nWe are an equal opportunities employer, and ensure that no applicant is subject to less favourable treatment on the grounds of gender, marital status, race, colour, nationality, ethnic or national origins, age, sexual orientation, responsibilities for dependants, physical or mental disability. The Bank selects candidates for interview based on their skills, qualifications and experience.\n\nGood conduct and sound judgment is crucial to our long term success. It's important that all employees in the organisation understand the expected standards of conduct and how we manage conduct risk. Individual accountability and an ownership mindset are the cornerstones of our Code of Conduct and are at the heart of managing risk well.\n\nPosting Date: 11/08/2016\n\nLocation: GB--London\n\nFull / Part-time: Full time\n\nHours Per Week: 35</td>
+      <th>29</th>
+      <td>01448dc2ffe3af6db5b99437a6d86f8d</td>
+      <td>Job Description:\n\nMerrill Lynch Wealth Management is a leading provider of comprehensive wealth management and investment products and services for individuals and businesses. With 10,869 Financial Advisors and $1.9 trillion in client balances as of December 31, 2015, Merrill Lynch is among the largest businesses of its kind in the world.\n\nMerrill Lynch Wealth Management specializes in goals-based wealth management, including planning for retirement, education, legacy, and other life goals through investment advice and guidance. Merrill Lynchs financial advisors help clients pursue the life they envision through a one-on-one relationship with a financial advisor committed to their needs an advisor with access to the investment insights of Merrill Lynch and the banking convenience of Bank of America.\n\nMerrill Lynch Wealth Management is part of Bank of America Corporation.\n\nThe Practice Management Development (PMD) Associate role is a 43 month development program for professionals who wish to build a wealth management business and become a full-fledged Merrill Lynch Financial Advisor (FA).\n\nPMD is a structured and disciplined program that demonstrates our ongoing commitment to the growth and progress of our Merrill Lynch Financial Advisors. PMD offers new advisors the most professional and client focused sales, investment, and business management training in the industry. PMD Associates will build upon their knowledge of these topics throughout the duration of the program, while focusing on developing client relationships.\n\nWith the assistance of mentors and managers, our PMD Associates will learn to develop a pipeline of affluent clients, identify client needs, develop relationships with existing and prospective clients, review investment goals, prepare investment recommendations that align with client goals, and the business management skills needed to operate an optimal practice model.\n\nThe Practice Management Development Associate engages in:\n\n* Developing a book of business in order to meet and exceed the required performance hurdles\n\n* Effectively sourcing prospective clients, capitalizing on referrals, assessing customer needs, through collaboration, delivering the full resources of Bank of America and Merrill Lynch to the client, and delivering highly customized solutions to meet client needs\n\n* Recommending investment products and services that are suitable for prospects and clients based on their objectives, resources, time horizon, risk profile and preferences\n\n* Balancing investment management, sales activities, customer service, new client development, administrative, compliance and personal growth and development according to both a day-to-day and longer-term plan\n\n* Planning and managing resources (time, people, budget) to run an optimal practice\n\n* Seeking the expertise of specialists, where appropriate, to identify, banking, lending, planning and investment solutions for a client\n\n* Establishing and maintaining relationship with the management team and informing them of any circumstances that require supervisory attention/review/approval per compliance guidelines and policies\n\n* Completing required training, obtaining industry licenses (Series 7 &amp; 66), mastering assessments, maintaining continuing education requirements and meeting minimum performance standards\n\nPursuant to the SAFE Act requirements, all employees engaged in residential loan mortgage originations must register with the federal registry system and remain in good standing. If your position requires SAFE Act registration, you will be required to register and to submit to the required SAFE Act background check and registration process. Failure to obtain and/or maintain SAFE Act registration may result in your immediate termination. Legal authorization to work in the US now and in the future without sponsorship is required.\n\nThe Practice Management Development Associate receives:\n\n* A base salary through the full 43 months in the PMD program along with bonus potential. Upon completion of the PMD program, the candidate will be compensated in accordance with the Financial Advisor Incentive Compensation Plan.\n\n* The strength and name recognition of Merrill Lynch and Bank of America\n\n* World class investment, sales, and business management training throughout their career\n\n* Cutting edge Technology and industry leading platform to leverage for success\n\n* Access to a full array of investment and banking solutions for your clients\n\n* Mentors and Managers located within your local office to work with you towards your success\n\n* PMD Curriculum that includes CFP course work, wealth management curriculum, licensing and essential skills training from Managers and Mentors\n\nThe Practice Management Development program is designed for professionals who are ready to make a career transition and follow their passion of becoming a Financial Advisor.\n\nCandidate Qualifications :\n\nExperience\n\nCandidates for this role will have a history of high achievement demonstrated by a proven record of rapid advancement in exceeding goals and outperforming peers. The ideal candidate has applicable sales experience or has worked in a professional or entrepreneurial setting.\n\nSuccess Skills and Attributes\n\nThe ideal candidate will bring to the role a broad network of contacts and relationships along with the ability to develop a strong sales pipeline through prospecting, telemarketing and relationship building skills. Other success attributes candidates possess are:\n\n* Ability to influence people\n\n* Entrepreneurial and self motivated to succeed\n\n* Perseverance and resilience\n\n* Confident and engaging presence\n\n* Concise, inspiring communication\n\n* Client focus mentality\n\n* High professional standards and integrity\n\nEducation/Licenses\n\nThe ideal candidate will have at minimum a Bachelors degree. The following licenses/designations are preferred:\n\n* Series 7 and 66 licensed - The PMD curriculum assists candidates from outside the wealth management industry to prepare for and complete licensing requirements for both\n\n* Chartered Financial Analyst (CFA)\n\n* Certified Financial Planner (CFP)\n\nPosting Date: 12/21/2016\n\nLocation: US-GA-Savannah, US-GA-Savannah, US-GA-Saint Simons Island, US-GA-Statesboro, US-SC-Hilton Head Island, US-SC-Charleston, US-SC-Beaufort, US-SC-Mount Pleasant\n\nTravel: Yes, 5% of the time\n\nFull / Part-time: Full time\n\nHours Per Week: 37.5\n\nShift: 1st shift</td>
     </tr>
   </tbody>
 </table>
@@ -13548,11 +13460,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CompanyPITRef</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw_pit_company_reference_full_2019-11-16.csv.gz&#39;</span><span class="p">);</span> 
-<span class="n">CompanyPITRef</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CompanyPITRef</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw_pit_company_reference_full_2020-09-30.csv.gz&#39;</span><span class="p">);</span> 
+<span class="n">CompanyPITRef</span><span class="p">[</span><span class="mi">26</span><span class="p">:</span><span class="mi">41</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13565,7 +13477,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -13600,7 +13512,7 @@ div#notebook {
   </thead>
   <tbody>
     <tr>
-      <th>30</th>
+      <th>26</th>
       <td>17</td>
       <td>2005-01-16</td>
       <td>2016-02-23</td>
@@ -13611,7 +13523,7 @@ div#notebook {
       <td>NaN</td>
     </tr>
     <tr>
-      <th>31</th>
+      <th>27</th>
       <td>17</td>
       <td>2016-02-24</td>
       <td>2017-07-16</td>
@@ -13622,7 +13534,7 @@ div#notebook {
       <td>488510.0</td>
     </tr>
     <tr>
-      <th>32</th>
+      <th>28</th>
       <td>17</td>
       <td>2017-07-17</td>
       <td>NaN</td>
@@ -13633,7 +13545,7 @@ div#notebook {
       <td>488510.0</td>
     </tr>
     <tr>
-      <th>33</th>
+      <th>29</th>
       <td>18</td>
       <td>2005-01-16</td>
       <td>2016-02-23</td>
@@ -13644,7 +13556,7 @@ div#notebook {
       <td>NaN</td>
     </tr>
     <tr>
-      <th>34</th>
+      <th>30</th>
       <td>18</td>
       <td>2016-02-24</td>
       <td>2016-06-14</td>
@@ -13655,7 +13567,7 @@ div#notebook {
       <td>334511.0</td>
     </tr>
     <tr>
-      <th>35</th>
+      <th>31</th>
       <td>18</td>
       <td>2016-06-15</td>
       <td>NaN</td>
@@ -13666,20 +13578,9 @@ div#notebook {
       <td>334511.0</td>
     </tr>
     <tr>
-      <th>36</th>
+      <th>32</th>
       <td>19</td>
       <td>2005-01-17</td>
-      <td>2018-10-09</td>
-      <td>Valspar</td>
-      <td>http://www.valspar.com</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>19</td>
-      <td>2018-10-10</td>
       <td>NaN</td>
       <td>Valspar</td>
       <td>http://www.valspar.com</td>
@@ -13688,7 +13589,7 @@ div#notebook {
       <td>NaN</td>
     </tr>
     <tr>
-      <th>38</th>
+      <th>33</th>
       <td>20</td>
       <td>2005-01-17</td>
       <td>2016-02-23</td>
@@ -13699,7 +13600,7 @@ div#notebook {
       <td>NaN</td>
     </tr>
     <tr>
-      <th>39</th>
+      <th>34</th>
       <td>20</td>
       <td>2016-02-24</td>
       <td>NaN</td>
@@ -13710,7 +13611,7 @@ div#notebook {
       <td>423450.0</td>
     </tr>
     <tr>
-      <th>40</th>
+      <th>35</th>
       <td>21</td>
       <td>2005-01-17</td>
       <td>2016-02-23</td>
@@ -13721,7 +13622,7 @@ div#notebook {
       <td>NaN</td>
     </tr>
     <tr>
-      <th>41</th>
+      <th>36</th>
       <td>21</td>
       <td>2016-02-24</td>
       <td>NaN</td>
@@ -13732,7 +13633,7 @@ div#notebook {
       <td>NaN</td>
     </tr>
     <tr>
-      <th>42</th>
+      <th>37</th>
       <td>22</td>
       <td>2005-01-17</td>
       <td>2016-02-23</td>
@@ -13743,7 +13644,7 @@ div#notebook {
       <td>NaN</td>
     </tr>
     <tr>
-      <th>43</th>
+      <th>38</th>
       <td>22</td>
       <td>2016-02-24</td>
       <td>NaN</td>
@@ -13754,7 +13655,7 @@ div#notebook {
       <td>336390.0</td>
     </tr>
     <tr>
-      <th>44</th>
+      <th>39</th>
       <td>23</td>
       <td>2005-01-17</td>
       <td>2016-02-23</td>
@@ -13763,6 +13664,17 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>23</td>
+      <td>2016-02-24</td>
+      <td>NaN</td>
+      <td>Ceridian Corporation</td>
+      <td>http://www.ceridian.com</td>
+      <td>549300XZEPZ1TK0ML932</td>
+      <td>4295903685</td>
+      <td>541214.0</td>
     </tr>
   </tbody>
 </table>
@@ -13786,10 +13698,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fs_company_reference</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;fs_company_reference_daily_2019-11-13.csv.gz&#39;</span><span class="p">);</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fs_company_reference</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;fs_company_reference_daily_2020-10-28.csv.gz&#39;</span><span class="p">);</span> 
 <span class="n">fs_company_reference</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
 
@@ -13803,7 +13715,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -13860,6 +13772,20 @@ div#notebook {
       <td>002RXT-E</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>US87612E1064</td>
+      <td>CH</td>
+      <td>SARA</td>
+      <td>US87612E1064</td>
+      <td>87612E106</td>
+      <td>BJ05580</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>002RXT-E</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>TGT</td>
       <td>MX</td>
       <td>MEX</td>
@@ -13869,7 +13795,7 @@ div#notebook {
       <td>False</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>1</td>
       <td>002RXT-E</td>
       <td>NaN</td>
@@ -13883,7 +13809,7 @@ div#notebook {
       <td>False</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>1</td>
       <td>002RXT-E</td>
       <td>NaN</td>
@@ -13897,7 +13823,21 @@ div#notebook {
       <td>False</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>5</th>
+      <td>1</td>
+      <td>002RXT-E</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>DYH</td>
+      <td>IT</td>
+      <td>ETLX</td>
+      <td>US87612E1064</td>
+      <td>87612E106</td>
+      <td>BKKGTD3</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6</th>
       <td>1</td>
       <td>002RXT-E</td>
       <td>NaN</td>
@@ -13911,7 +13851,7 @@ div#notebook {
       <td>False</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>7</th>
       <td>1</td>
       <td>002RXT-E</td>
       <td>1972-01-21</td>
@@ -13925,7 +13865,7 @@ div#notebook {
       <td>True</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>8</th>
       <td>1</td>
       <td>002RXT-E</td>
       <td>2000-01-31</td>
@@ -13939,7 +13879,7 @@ div#notebook {
       <td>True</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>9</th>
       <td>2</td>
       <td>000KYW-E</td>
       <td>NaN</td>
@@ -13953,7 +13893,21 @@ div#notebook {
       <td>False</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>10</th>
+      <td>2</td>
+      <td>000KYW-E</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>GRM</td>
+      <td>IT</td>
+      <td>ETLX</td>
+      <td>US3703341046</td>
+      <td>370334104</td>
+      <td>BGPK675</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11</th>
       <td>2</td>
       <td>000KYW-E</td>
       <td>NaN</td>
@@ -13967,7 +13921,7 @@ div#notebook {
       <td>False</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>12</th>
       <td>2</td>
       <td>000KYW-E</td>
       <td>NaN</td>
@@ -13981,7 +13935,7 @@ div#notebook {
       <td>False</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>13</th>
       <td>2</td>
       <td>000KYW-E</td>
       <td>NaN</td>
@@ -13995,7 +13949,7 @@ div#notebook {
       <td>False</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>14</th>
       <td>2</td>
       <td>000KYW-E</td>
       <td>NaN</td>
@@ -14006,48 +13960,6 @@ div#notebook {
       <td>US3703341046</td>
       <td>370334104</td>
       <td>B12GMT5</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>2</td>
-      <td>000KYW-E</td>
-      <td>1972-01-21</td>
-      <td>NaN</td>
-      <td>GIS</td>
-      <td>US</td>
-      <td>NYS</td>
-      <td>US3703341046</td>
-      <td>370334104</td>
-      <td>2367026</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>3</td>
-      <td>000HXM-E</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ECON.XX9</td>
-      <td>US</td>
-      <td>OTC</td>
-      <td>US2790291023</td>
-      <td>279029102</td>
-      <td>NaN</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>3</td>
-      <td>000HXM-E</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ECL</td>
-      <td>AT</td>
-      <td>WBO</td>
-      <td>US2788651006</td>
-      <td>278865100</td>
-      <td>BJK3KK1</td>
       <td>False</td>
     </tr>
   </tbody>
@@ -14071,10 +13983,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw_company_scrape_log_full_2019-11-01.csv.gz&#39;</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;raw_company_scrape_log_full_2020-09-30.csv.gz&#39;</span><span class="p">);</span>
 <span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">ScrapeLog</span><span class="p">[</span><span class="n">ScrapeLog</span><span class="o">.</span><span class="n">date</span> <span class="o">&gt;</span> <span class="s1">&#39;2019-01-01&#39;</span><span class="p">]</span>
 <span class="n">ScrapeLog</span> <span class="o">=</span> <span class="n">ScrapeLog</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;company_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">ScrapeLog</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
@@ -14090,7 +14002,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -14246,17 +14158,17 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This file is summed totals from the raw job file. The created_job_count is the total number of jobs created that day, the deleted_job_count is the total number of jobs removed from a careers page for that company, the unique_active_job_count is the total number of active jobs for the company. Active duration is a capped average of duration of currently unique active jobs.  If a company has no/0 values for all 4 of these fields they will not have a record for that day.</p>
+<p>This file is summed totals from the raw job file. The created_job_count is the total number of jobs created that day, the deleted_job_count is the total number of jobs removed from a careers page for that company, the unique_active_job_count is the total number of active jobs for the company. Active duration is a capped average of duration of currently unique active jobs.  If a company has 0 values for all 4 of these fields they will not have a record for that day.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">company_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_company_analytics_2019-11-19.csv.gz&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">company_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_company_analytics_2020-10-28.csv.gz&#39;</span><span class="p">)</span>
 <span class="n">company_analytics</span> <span class="o">=</span> <span class="n">company_analytics</span><span class="p">[</span><span class="n">company_analytics</span><span class="o">.</span><span class="n">day</span> <span class="o">&gt;</span> <span class="s1">&#39;2019-01-01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">company_analytics</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
@@ -14271,7 +14183,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -14491,17 +14403,17 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This file summarizes the same information above, instead of using company it is group by ticker.</p>
+<p>This file summarizes the same information above, instead of using company it is grouped by ticker.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticker_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_ticker_analytics_2019-11-19.csv.gz&#39;</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticker_analytics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;core_ticker_analytics_2020-10-28.csv.gz&#39;</span><span class="p">);</span>
 <span class="n">ticker_analytics</span> <span class="o">=</span> <span class="n">ticker_analytics</span><span class="p">[</span><span class="n">ticker_analytics</span><span class="o">.</span><span class="n">day</span> <span class="o">&gt;</span> <span class="s1">&#39;2019-01-01&#39;</span><span class="p">]</span>
 <span class="n">ticker_analytics</span><span class="p">[</span><span class="n">ticker_analytics</span><span class="o">.</span><span class="n">stock_ticker</span> <span class="o">==</span> <span class="s1">&#39;AMZN | NAS | US&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
@@ -14516,7 +14428,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -14552,46 +14464,46 @@ div#notebook {
       <th>0</th>
       <td>2019-01-02</td>
       <td>AMZN | NAS | US</td>
-      <td>98</td>
-      <td>300</td>
-      <td>22125</td>
-      <td>79.6433</td>
+      <td>121</td>
+      <td>310</td>
+      <td>23100</td>
+      <td>79.6771</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2019-01-03</td>
       <td>AMZN | NAS | US</td>
       <td>381</td>
-      <td>477</td>
-      <td>22029</td>
-      <td>78.9314</td>
+      <td>481</td>
+      <td>23000</td>
+      <td>79.0209</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2019-01-04</td>
       <td>AMZN | NAS | US</td>
-      <td>372</td>
-      <td>315</td>
-      <td>22086</td>
-      <td>78.5493</td>
+      <td>393</td>
+      <td>346</td>
+      <td>23047</td>
+      <td>78.6306</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2019-01-05</td>
       <td>AMZN | NAS | US</td>
-      <td>263</td>
-      <td>243</td>
-      <td>22106</td>
-      <td>78.4692</td>
+      <td>265</td>
+      <td>260</td>
+      <td>23052</td>
+      <td>78.5930</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2019-01-06</td>
       <td>AMZN | NAS | US</td>
-      <td>12</td>
-      <td>16</td>
-      <td>22102</td>
-      <td>79.2783</td>
+      <td>17</td>
+      <td>27</td>
+      <td>23042</td>
+      <td>79.3872</td>
     </tr>
     <tr>
       <th>5</th>
@@ -14599,44 +14511,44 @@ div#notebook {
       <td>AMZN | NAS | US</td>
       <td>205</td>
       <td>114</td>
-      <td>22193</td>
-      <td>79.3949</td>
+      <td>23133</td>
+      <td>79.5337</td>
     </tr>
     <tr>
       <th>6</th>
       <td>2019-01-08</td>
       <td>AMZN | NAS | US</td>
-      <td>465</td>
-      <td>387</td>
-      <td>22271</td>
-      <td>78.7900</td>
+      <td>501</td>
+      <td>415</td>
+      <td>23219</td>
+      <td>78.9118</td>
     </tr>
     <tr>
       <th>7</th>
       <td>2019-01-09</td>
       <td>AMZN | NAS | US</td>
-      <td>537</td>
-      <td>355</td>
-      <td>22453</td>
-      <td>77.8560</td>
+      <td>539</td>
+      <td>356</td>
+      <td>23402</td>
+      <td>78.0442</td>
     </tr>
     <tr>
       <th>8</th>
       <td>2019-01-10</td>
       <td>AMZN | NAS | US</td>
-      <td>449</td>
-      <td>403</td>
-      <td>22499</td>
-      <td>77.0773</td>
+      <td>514</td>
+      <td>443</td>
+      <td>23473</td>
+      <td>77.1300</td>
     </tr>
     <tr>
       <th>9</th>
       <td>2019-01-11</td>
       <td>AMZN | NAS | US</td>
-      <td>457</td>
-      <td>270</td>
-      <td>22686</td>
-      <td>76.4150</td>
+      <td>461</td>
+      <td>273</td>
+      <td>23661</td>
+      <td>76.5227</td>
     </tr>
     <tr>
       <th>10</th>
@@ -14644,17 +14556,17 @@ div#notebook {
       <td>AMZN | NAS | US</td>
       <td>292</td>
       <td>198</td>
-      <td>22780</td>
-      <td>76.3987</td>
+      <td>23755</td>
+      <td>76.5424</td>
     </tr>
     <tr>
       <th>11</th>
       <td>2019-01-13</td>
       <td>AMZN | NAS | US</td>
-      <td>13</td>
-      <td>14</td>
-      <td>22779</td>
-      <td>77.2211</td>
+      <td>37</td>
+      <td>29</td>
+      <td>23763</td>
+      <td>77.2947</td>
     </tr>
     <tr>
       <th>12</th>
@@ -14662,17 +14574,17 @@ div#notebook {
       <td>AMZN | NAS | US</td>
       <td>155</td>
       <td>72</td>
-      <td>22862</td>
-      <td>77.6164</td>
+      <td>23846</td>
+      <td>77.7094</td>
     </tr>
     <tr>
       <th>13</th>
       <td>2019-01-15</td>
       <td>AMZN | NAS | US</td>
-      <td>472</td>
-      <td>275</td>
-      <td>23059</td>
-      <td>76.9452</td>
+      <td>489</td>
+      <td>301</td>
+      <td>24034</td>
+      <td>77.0439</td>
     </tr>
     <tr>
       <th>14</th>
@@ -14680,8 +14592,8 @@ div#notebook {
       <td>AMZN | NAS | US</td>
       <td>528</td>
       <td>315</td>
-      <td>23272</td>
-      <td>76.0805</td>
+      <td>24247</td>
+      <td>76.2480</td>
     </tr>
   </tbody>
 </table>
