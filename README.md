@@ -1,6 +1,6 @@
 # Job-Market-Data
 
-The LinkUp dataset is a dataset that contains about 130 million job records scraped direct from about 45,000 company career sites.  For more information contact data@linkup.com.
+The LinkUp dataset is a dataset that contains about 165 million job records scraped direct from about 60,000 company career sites.  For more information contact data@linkup.com.
 
 This repository is to store documentation and tutorials regarding LinkUp data that can be used to get started using LinkUp Data.  
 
